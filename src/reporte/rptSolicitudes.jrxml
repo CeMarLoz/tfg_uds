@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.11.0.final using JasperReports Library version 6.11.0-0c4056ccaa4d25a5a8c45672d2f764ea3498bebb  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="usuarios" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0a313ca9-c08c-41ec-a37e-1e2a9d456f16">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Conex"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="P_NRO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT 
+    CONCAT(clinombre, ' ', cliapellido) cliente, cliruc
+FROM
+    solicitud s
+        INNER JOIN
+    cliente c ON s.clicodigo = c.clicodigo
+WHERE
+    solnro =  1]]>
+	</queryString>
+	<field name="cliente" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cliente"/>
+	</field>
+	<field name="cliruc" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.label" value="cliruc"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="cliente"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="77" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="21" width="400" height="19" uuid="0e2ac6af-cd74-4efe-a6e7-4579b03edbde"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Junta de Saneamiento Toro Blanco]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="480" y="2" width="75" height="20" uuid="f0ae6022-a64f-4a4a-bd5a-043b97cef79a"/>
+				<textElement textAlignment="Right">
+					<font fontName="SansSerif" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Pag. "+$V{PAGE_NUMBER}+" de"+" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="180" y="40" width="200" height="23" uuid="b1627383-db67-439d-91f0-0d78f6532536"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[RUC: 80054176-6]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement x="80" y="0" width="400" height="30" uuid="493982a4-b4ea-4e57-abba-6f772e8e7513"/>
+				<textElement textAlignment="Center">
+					<font fontName="SansSerif" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Solicitud de Conexión]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="215" splitType="Stretch">
+			<staticText>
+				<reportElement x="5" y="34" width="60" height="14" uuid="7094e46c-9358-40b9-b146-166ca5f32def"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Solicitud Nº:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="67" width="150" height="30" uuid="491a9d9e-37fc-4a00-9161-76fa0e07c49b"/>
+				<textElement>
+					<font isBold="false"/>
+				</textElement>
+				<text><![CDATA[Don Ramon Gonzalez
+Presidente
+]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="107" width="80" height="20" uuid="7887aee3-48c3-4e34-808f-f130de6f75b1"/>
+				<text><![CDATA[PRESENTE]]></text>
+			</staticText>
+			<textField pattern="&apos;Caaguazu, &apos; dd &apos;de&apos; MMMMM &apos;del&apos; yyyy">
+				<reportElement x="385" y="5" width="174" height="20" uuid="78398b6e-d8e7-41b5-8a97-edaa9863bc9c"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="73" y="34" width="40" height="15" uuid="45ddccab-ba3f-45f6-865e-a134bcb9af9f">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{P_NRO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5" y="135" width="552" height="80" uuid="6cc0746a-61a2-49c2-ab19-1d319d8fb965">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["	Por medio de la presente yo, "+$F{cliente}+" con R.U.C. o C.I.Nº "+$F{cliruc}+" deseo hacer de su conocimiento mi profundo interés por pertenecer a su nómina de clientes y contar con su servicio de agua potable.\n\n"+
+"	Sin más por el momento, le reitero mi profundo interés y compromiso para contratar sus servicios.\n\n"+
+"	Atentamente."]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="17" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="75" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="52" width="181" height="1" uuid="249b7258-5b14-4164-89d6-e5c96608e100">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement x="380" y="52" width="173" height="1" uuid="8ec65861-1daf-407a-9774-ee0aeb90b050">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="53" width="180" height="18" uuid="33adab18-e31a-4ea4-87fb-58eb706bbd49"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Secretario]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="380" y="53" width="174" height="18" uuid="fc51a204-d874-4aa5-a55d-dbd0bb0d6e4d"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Solicitante]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
